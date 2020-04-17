@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBStudy" Class="DBStudyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JICWANG1-E7470\MYSQL;Initial Catalog=DBStudy;Persist Security Info=True;User ID=sa" SettingsObjectName="CSharpStudyFramework.Properties.Settings" SettingsPropertyName="DBStudyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Course" Member="Courses">
+    <Type Name="Course">
+      <Column Name="CId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cname" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Course_SC" Member="SCs" ThisKey="CId" OtherKey="CId" Type="SC" />
+      <Association Name="Teacher_Course" Member="Teacher" ThisKey="TId" OtherKey="TId" Type="Teacher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teacher" Member="Teachers">
+    <Type Name="Teacher">
+      <Column Name="TId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tname" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Teacher_Course" Member="Courses" ThisKey="TId" OtherKey="TId" Type="Course" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SC" Member="SCs">
+    <Type Name="SC">
+      <Column Name="SId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="score" Type="System.Decimal" DbType="Decimal(18,1)" CanBeNull="true" />
+      <Association Name="Course_SC" Member="Course" ThisKey="CId" OtherKey="CId" Type="Course" IsForeignKey="true" />
+      <Association Name="Student_SC" Member="Student" ThisKey="SId" OtherKey="SId" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="SId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Sname" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Sage" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Ssex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Student_SC" Member="SCs" ThisKey="SId" OtherKey="SId" Type="SC" />
+    </Type>
+  </Table>
+</Database>
