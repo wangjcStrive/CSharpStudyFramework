@@ -27,9 +27,7 @@ namespace CSharpStudyFramework
         {
 #if LINQTOSQL
             LINQToSQL ins = new LINQToSQL();
-            
-            ins.exer2();
-
+            ins.exer1();
 #endif
 #if LINQTOXML
             LINQToXMLDemo ins = new LINQToXMLDemo();
