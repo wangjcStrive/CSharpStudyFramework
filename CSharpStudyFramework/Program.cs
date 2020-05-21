@@ -2,7 +2,7 @@
 //#define NoBug
 //#define Li
 //#define Zhang
-#define ReflectionTest
+//#define ReflectionTest
 //#define AttributeTest
 //#define IndexTest
 //#define DelegateAndEvent
@@ -11,7 +11,9 @@
 //#define LINQTOXML
 //#define LINQTOSQL
 //#define TASK_THREAD_DEMO
-#define Expression_DEMO
+//#define Expression_DEMO
+#define AsyncAwaitTest
+
 using CSharpStudyFramework.src;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,13 @@ namespace CSharpStudyFramework
     {
         static void Main(string[] args)
         {
+
+#if AsyncAwaitTest
+            AsyncAwaitDemo ins = new AsyncAwaitDemo();
+            ins.mainThreadFunc1_callLongRunTask_MainThreadWillNotBlockAtThisFunc();
+            ins.mainThreaddFunc2_WillNotBlockByFunc1();
+            ins.callMethod();
+#endif
 #if Expression_DEMO
             ExpressionDemo ins = new ExpressionDemo();
             ins.createExpression();
