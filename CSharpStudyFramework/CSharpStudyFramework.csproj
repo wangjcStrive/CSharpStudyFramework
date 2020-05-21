@@ -62,14 +62,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="src\AsyncAwaitDemo.cs" />
     <Compile Include="src\attributeStudy.cs" />
     <Compile Include="src\DelegateAndEvent.cs" />
     <Compile Include="src\EventHandlerStudy.cs" />
     <Compile Include="src\EventStudy.cs" />
+    <Compile Include="src\ExpressionDemo.cs" />
     <Compile Include="src\IndexerStudy.cs" />
     <Compile Include="src\LINQToSQL.CS" />
     <Compile Include="src\LINQToXMLDemo.cs" />
     <Compile Include="src\Reflection.cs" />
+    <Compile Include="src\ThreadTaskDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

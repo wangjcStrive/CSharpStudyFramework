@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpStudy
+namespace CSharpStudyFramework.src
 {
     class EventStudy
     {

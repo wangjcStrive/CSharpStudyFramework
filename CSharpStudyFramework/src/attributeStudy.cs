@@ -5,7 +5,7 @@ using System.Text;
 //for attribute
 using System.Diagnostics;
 
-namespace CSharpStudy
+namespace CSharpStudyFramework.src
 {
     public class ToolKit
     {

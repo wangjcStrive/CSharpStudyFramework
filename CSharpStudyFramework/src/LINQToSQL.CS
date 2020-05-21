@@ -56,7 +56,8 @@ namespace CSharpStudyFramework.src
 
         /*
             exer1. 查询" 01 "课程比" 02 "课程成绩高的学生的信息及课程分数
-            根据一张表的查询结果去查询另一张表
+            根据一张表的查询结果去查询另一张表，可以考虑用join
+            linq的写法跟sql感觉差不太多
 
             SQL
                 -- 1 --
@@ -110,13 +111,54 @@ namespace CSharpStudyFramework.src
             }
         }
 
-        public void test()
+        /*
+            2. 查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
+            涉及多表查询时，写linq并不方便？
+
+            SQL
+                select * from Student right join (
+                    select SId, avg(score) as x
+                    from SC
+                    group by SId
+                    having avg(score)>60
+                )r
+                on Student.SId = r.SId;
+        */
+        public void exer2()
         {
+            //每人的平均分 + 平均分大于60。group bu后已经分组了，然后分组放入到g中
+            var groupByTest = from x in m_db.SCs
+                     group x by x.SId into g
+                     where g.Average(x=>x.score) >=60
+                     select new
+                     {
+                         g.Key,
+                         avgScore = g.Average(x => x.score)
+                     };
 
+            var result = from stu in m_db.Students
+                         join s in
+                         (
+                             from x in m_db.SCs
+                             group x by x.SId into g
+                             where g.Average(x => x.score) >= 60
+                             select new
+                             {
+                                 g.Key,
+                                 avgScore = g.Average(x => x.score)
+                             }
+                         ) on stu.SId equals s.Key
+                         select new
+                         {
+                             id = stu.SId,
+                             name = stu.Sname,
+                             avgScore = s.avgScore
+                         };
 
-
-
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.id}   {item.name}     {item.avgScore}");
+            }
         }
-
     }
 }

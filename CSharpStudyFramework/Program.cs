@@ -2,20 +2,22 @@
 //#define NoBug
 //#define Li
 //#define Zhang
-//#define ReflectionTest
+#define ReflectionTest
 //#define AttributeTest
 //#define IndexTest
 //#define DelegateAndEvent
 //#define LINQStudy
 //#define AnonymousFunction
 //#define LINQTOXML
-#define LINQTOSQL
-using CSharpStudy;
+//#define LINQTOSQL
+//#define TASK_THREAD_DEMO
+#define Expression_DEMO
 using CSharpStudyFramework.src;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,9 +27,17 @@ namespace CSharpStudyFramework
     {
         static void Main(string[] args)
         {
+#if Expression_DEMO
+            ExpressionDemo ins = new ExpressionDemo();
+            ins.createExpression();
+#endif
+#if TASK_THREAD_DEMO
+            ThreadTaskDemo ins = new ThreadTaskDemo();
+            ins.createTask();
+#endif
 #if LINQTOSQL
             LINQToSQL ins = new LINQToSQL();
-            ins.exer1();
+            ins.exer2();
 #endif
 #if LINQTOXML
             LINQToXMLDemo ins = new LINQToXMLDemo();
@@ -123,7 +133,7 @@ namespace CSharpStudyFramework
             x => {return x+1;}
 
 #endif
-        Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
